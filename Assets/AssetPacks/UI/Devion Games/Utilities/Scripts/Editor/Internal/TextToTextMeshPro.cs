@@ -118,8 +118,6 @@ namespace DevionGames
 			float outlineThickness = 0f;
 			Color outlineColor= Color.black;
 			if (hasOutline) {
-				outlineThickness = ((Mathf.Abs(outline.effectDistance.x) +Mathf.Abs(outline.effectDistance.y))*0.5f)* outlineRatio;
-				outlineColor = outline.effectColor;
 				GameObject.DestroyImmediate(outline);
 			}
 
