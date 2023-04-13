@@ -7,11 +7,20 @@ TagManager:
   - Bat
   - NPC
   - Book
+  - Mad
+  - SkraldeSpand
+  - ikkeMad
+  - Wow
+  - Pathfinding Menu
+  - Quest UI
+  - Main Menu
+  - UN Goal
+  - Object Pool
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProccesing
   - Water
   - UI
   - Walls
