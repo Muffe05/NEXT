@@ -12,6 +12,9 @@ public class ChangeCamPos : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        if (!gameObject.CompareTag("Interactable"))
+            return;
+
         if (!activated)
             Activate();
     }
