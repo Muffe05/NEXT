@@ -24,10 +24,9 @@ public class InteractionManager : MonoBehaviour
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
         Debug.DrawRay(ray.origin, ray.direction * dist);
 
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, dist))
-            if (hit.collider.TryGetComponent(out IInteractable interactableObject))
-                interactableObject.Interact();
+        if (Input.GetKeyDown(KeyCode.E) && selection != null)
+            if (selection.CompareTag("Interactable"))
+                selection.GetComponent<IInteractable>().Interact();
     }
 
     private void HighlightCheck()

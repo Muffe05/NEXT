@@ -9,6 +9,7 @@ public class MouseMovement : MonoBehaviour
     private float xRot = 0f;
     void Start()
     {
+        Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
