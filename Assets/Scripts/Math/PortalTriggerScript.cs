@@ -9,7 +9,7 @@ public class PortalTriggerScript : MonoBehaviour
     public GameObject teleportTarget;
 
 
-    void OnTriggerStay(Collider other)
+    void OnTriggerEnter(Collider other)
     {
 
         
