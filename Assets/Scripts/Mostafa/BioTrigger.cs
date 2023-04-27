@@ -9,10 +9,10 @@ public class BioTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
 
     {
-        if (!audioSource.isPlaying)
+        if (other.CompareTag("Player") && !audioSource.isPlaying)
         {
             audioSource.Play();
-
+            
         }
         else
         {

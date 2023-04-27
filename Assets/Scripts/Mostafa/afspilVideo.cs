@@ -7,7 +7,7 @@ public class afspilVideo : MonoBehaviour
 {
     public UnityEngine.Video.VideoPlayer videoPlayer;
 
-
+    
     // Start is called before the first frame update
     void Start()
     {
