@@ -33,9 +33,9 @@ public class openDoor : MonoBehaviour
     {
         if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers) && hit.collider.TryGetComponent<Door>(out Door door)){
             if(door.IsOpen){
-                UseText.SetText("Close \"E\"");
+                UseText.SetText("Close \"F\"");
             } else {
-                UseText.SetText("Open \"E\"");
+                UseText.SetText("Open \"F\"");
             }
             UseText.gameObject.SetActive(true);
             UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.01f;
@@ -44,7 +44,7 @@ public class openDoor : MonoBehaviour
             UseText.gameObject.SetActive(false);
         }
 
-        if(Input.GetKeyDown(KeyCode.E)){
+        if(Input.GetKeyDown(KeyCode.F)){
             OnEClick();
         }
     }
