@@ -7,7 +7,7 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] float dist = 3f;
     [SerializeField] private Camera cam;
 
-    private GameObject selection;
+    [SerializeField] private GameObject selection;
 
     private void Awake()
     {
@@ -40,7 +40,7 @@ public class InteractionManager : MonoBehaviour
                 GameObject[] outlineToDisable = GameObject.FindGameObjectsWithTag("Interactable");
 
                 for (int i = 0; i < outlineToDisable.Length; i++)
-                    if (outlineToDisable[i] != selection)
+                    if (outlineToDisable[i] != selection && outlineToDisable[i].GetComponent<Outline>())
                         outlineToDisable[i].GetComponent<Outline>().enabled = false;
 
                 selection.GetComponent<Outline>().enabled = true;
@@ -50,7 +50,6 @@ public class InteractionManager : MonoBehaviour
                 selection.GetComponent<Outline>().enabled = false;
                 selection = null;
             }
-
         }
         else
             if (selection != null)

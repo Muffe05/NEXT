@@ -12,7 +12,7 @@ public class MultipleChoice : MonoBehaviour, IInteractable
 
     [Header("OtherVariables")]
     public GameObject cam;
-    private Animator anim;
+    [SerializeField] private Animator anim;
     [Space(10)]
 
     private int arraySize = 4;
@@ -37,7 +37,7 @@ public class MultipleChoice : MonoBehaviour, IInteractable
 
     public Question[] question;
 
-    private void Awake()
+    private void Start()
     {
         anim = MultipleChoiceManager.multipleChoiceManager.gameObject.GetComponent<Animator>();
     }
