@@ -2,33 +2,38 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Outline))]
+[RequireComponent(typeof(Rigidbody))]
 public class MultipleChoice : MonoBehaviour, IInteractable
 {
-    [Header("PossibleOutcomes")]
-    [SerializeField] private bool tryAgain = false;
-    [SerializeField] private bool startAgain = false;
-    [SerializeField] private bool goBack = false;
-    [Space(10)]
+    //What happens when you click the wrong answer
+    public bool tryAgain = false;
+    public bool startAgain = false;
+    public bool goBack = false;
 
-    [Header("OtherVariables")]
+    //Other Variables
     public GameObject cam;
-    [SerializeField] private Animator anim;
-    [Space(10)]
+    public bool changeViewModel = false;
+    public bool movable = false;
 
+    //Private variables
     private int arraySize = 4;
     private int questionNumber = 0;
 
+    private Animator anim;
     private bool won = false;
+
+    public bool advancedSettings = false;
 
     [System.Serializable]
     public class Question
     {
-        public string text;
+        public string question;
 
         [System.Serializable]
         public class Answer
         {
-            public string text;
+            public string answer;
             public bool correct;
         }
 
@@ -43,6 +48,22 @@ public class MultipleChoice : MonoBehaviour, IInteractable
     }
     private void OnValidate()
     {
+        var outline = gameObject.GetComponent<Outline>();
+        outline.OutlineMode = Outline.Mode.OutlineVisible;
+        outline.OutlineColor = new Color32(255, 255, 0, 255);
+        outline.OutlineWidth = 15;
+        outline.enabled = false;
+
+        if (!movable)
+        {
+            var rb = gameObject.GetComponent<Rigidbody>();
+            rb.mass = 0;
+            rb.angularDrag = 0;
+            rb.drag = 0;
+            rb.useGravity = false;
+            rb.isKinematic = false;
+        }
+
         foreach (var answerNumber in question)
         {
             if (answerNumber.answer.Length > arraySize)
@@ -58,7 +79,7 @@ public class MultipleChoice : MonoBehaviour, IInteractable
         }
         for (int i = 0; i < question.Length; i++)
             for (int j = 0; j < question[i].answer.Length; j++)
-                if (question[i].answer[j].correct && question[i].answer[j].text == "")
+                if (question[i].answer[j].correct && question[i].answer[j].answer == "")
                 {
                     Debug.LogWarning("Du kan ikke have et tomt svar som korrekt!");
                     question[i].answer[j].correct = false;
@@ -125,16 +146,16 @@ public class MultipleChoice : MonoBehaviour, IInteractable
         Cursor.lockState = CursorLockMode.Confined;
             
         if (MultipleChoiceManager.multipleChoiceManager.text[0].text != null)
-            MultipleChoiceManager.multipleChoiceManager.text[0].text = question[questionNumber].text;
+            MultipleChoiceManager.multipleChoiceManager.text[0].text = question[questionNumber].question;
 
         for (int i = 1; i < MultipleChoiceManager.multipleChoiceManager.text.Length; i++)
         {
-            if (question[questionNumber].answer[i - 1].text == "")
+            if (question[questionNumber].answer[i - 1].answer == "")
                 MultipleChoiceManager.multipleChoiceManager.text[i].GetComponentInParent<RawImage>().enabled = false;
             else
                 MultipleChoiceManager.multipleChoiceManager.text[i].GetComponentInParent<RawImage>().enabled = true;
 
-            MultipleChoiceManager.multipleChoiceManager.text[i].text = question[questionNumber].answer[i - 1].text;
+            MultipleChoiceManager.multipleChoiceManager.text[i].text = question[questionNumber].answer[i - 1].answer;
         }
     }
 }

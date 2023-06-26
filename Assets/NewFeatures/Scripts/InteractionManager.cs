@@ -7,7 +7,7 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] float dist = 3f;
     [SerializeField] private Camera cam;
 
-    [SerializeField] private GameObject selection;
+    private GameObject selection;
 
     private void Awake()
     {

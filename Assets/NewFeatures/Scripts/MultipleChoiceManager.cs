@@ -39,10 +39,17 @@ public class MultipleChoiceManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
         player = GameObject.FindGameObjectWithTag("Player");
-        player.SetActive(false);
-
         multipleChoice = multipleChoiceController;
-        multipleChoice.cam.SetActive(true);
+        if (multipleChoice.changeViewModel)
+        {
+            multipleChoice.cam.SetActive(true);
+            player.SetActive(false);
+        }
+        else
+        {
+            player.GetComponent<SimpleMovementFPS>().enabled = false;
+            player.GetComponentInChildren<MoveCamera>().enabled = false;
+        }
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
             gameObject.transform.GetChild(i).gameObject.SetActive(true);
@@ -55,11 +62,17 @@ public class MultipleChoiceManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         if (player != null)
+        {
             player.SetActive(true);
+            player.GetComponent<SimpleMovementFPS>().enabled = true;
+            player.GetComponentInChildren<MoveCamera>().enabled = true;
+        }
         player = null;
 
         if (multipleChoice != null)
+        {
             multipleChoice.cam.SetActive(false);
+        }
         multipleChoice = null;
 
         for (int i = 0; i < gameObject.transform.childCount; i++)
