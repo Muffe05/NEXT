@@ -3,28 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Bat
-  - NPC
-  - Book
-  - Mad
-  - SkraldeSpand
-  - ikkeMad
-  - Wow
-  - Pathfinding Menu
-  - Quest UI
-  - Main Menu
-  - UN Goal
-  - Object Pool
+  tags: []
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - PostProccesing
+  - 
   - Water
   - UI
-  - Walls
-  - Ground
+  - 
+  - 
   - 
   - 
   - 
